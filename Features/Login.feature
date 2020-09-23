@@ -14,5 +14,6 @@ Feature: Login
     Examples:
 				| email | pwd |
 				| admin@yourstore.com | admin |
+				| admin@notyourstore.com | admin |
 
  
