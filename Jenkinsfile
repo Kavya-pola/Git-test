@@ -17,7 +17,6 @@ pipeline{
     steps{
       bat 'mvn --batch-mode resources:testResources compiler:testCompile surefire:test'
   }
-  }
   post
     {
       always
