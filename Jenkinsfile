@@ -18,5 +18,13 @@ pipeline{
       bat 'mvn --batch-mode resources:testResources compiler:testCompile surefire:test'
   }
   }
+  post
+    {
+      always
+      {
+       junit testResults: 'target/surefire-reports/*.html'
+      }
+     }
+   }
  }
 }
