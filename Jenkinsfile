@@ -1,29 +1,23 @@
 pipeline{
  agent any
+ tools {
+        maven 'maven-3'
+        jdk 'jdk8'
+    }
     stages {
         stage ('Build Stage') {
 
             steps {
-             echo "::::in compile stage"
-             withMaven(maven : 'maven-3') {
-                      bat 'mvn clean build'
-
-					         }
-               
+             sh 'mvn -Dmaven.test.failure.ignore=true install' 
             }
-        }
-
-        stage ('Testing Stage') {
-
-            steps {
-                echo "::::in test stage"
-             withMaven(maven : 'maven-3') {
-                    bat 'mvn test'
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
                 }
-              
             }
         }
+
   
-   }
+   
  }
 
