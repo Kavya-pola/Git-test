@@ -1,12 +1,12 @@
 pipeline{
  agent any
     stages {
-        stage ('Compile Stage') {
+        stage ('Build Stage') {
 
             steps {
              echo "::::in compile stage"
              withMaven(maven : 'maven-3') {
-                      bat 'mvn clean compile'
+                      bat 'mvn clean build'
 
 					         }
                
