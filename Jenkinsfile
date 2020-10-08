@@ -16,6 +16,25 @@ pipeline{
                 }
             }
         }
+    stage('Import results to Xray') {
+		def testExecutionFieldId = 10014
+		def projectKey = "BDD"
+		def xrayConnectorId = '75fd9872-0773-4762-861d-6a25c59e1e2e	'
+		def info = '''{
+				"fields": {
+					"project": {
+					"key": "''' + projectKey + '''"
+				},
+				"issuetype": {
+				"id": "''' + testExecutionFieldId + '''"
+				}
+				}
+				}'''
+
+			echo info
+
+			step([$class: 'XrayImportBuilder', endpointName: '/cucumber/multipart', importFilePath: 'output-json2.json', importInfo: info, inputInfoSwitcher: 'fileContent', serverInstance: xrayConnectorId])
+		}
 		
 		
 
