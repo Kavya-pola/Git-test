@@ -34,7 +34,7 @@ pipeline{
 				}'''
 
 			echo info
-			step([$class: 'XrayImportBuilder', endpointName: '/cucumber', importFilePath: 'output-json2.json', importInfo: info, inputInfoSwitcher: 'fileContent', serverInstance: xrayConnectorId])
+			step([$class: 'XrayImportBuilder', endpointName: '/cucumber/multipart', importFilePath: 'output-json2.json', importInfo: info, inputInfoSwitcher: 'fileContent', serverInstance: xrayConnectorId])
 			
 		}
 	    }
