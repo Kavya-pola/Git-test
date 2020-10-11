@@ -34,8 +34,7 @@ pipeline{
 				}'''
 
 			echo info
-curl --basic --user kavyapola51@gmail.com:jirabdd10 -F "file=@output-json2.json"
-http://id.atlassian.com/rest/atm/1.0/automation/execution/cucumber/BDD?autoCreateTestCases=false
+			step([$class: 'XrayImportBuilder', endpointName: '/cucumber', importFilePath: 'output-json2.json', importInfo: info, inputInfoSwitcher: 'fileContent', serverInstance: xrayConnectorId])
 			
 		}
 	    }
