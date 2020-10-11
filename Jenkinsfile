@@ -16,7 +16,8 @@ pipeline{
                 }
             }
         }
-   post{
+      }
+    post{
  always{
 	step([$class: 'XrayImportBuilder',
 		  endpointName: '/cucumber',
@@ -26,9 +27,5 @@ pipeline{
 		  serverInstance: '75fd9872-0773-4762-861d-6a25c59e1e2e'])
  }
 }
-		
-
-    }
-   
  }
 
