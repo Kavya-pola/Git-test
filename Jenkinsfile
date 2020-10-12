@@ -21,8 +21,8 @@ pipeline{
 		    script{
 		
 			    
-			    curl -H "Content-Type: application/json" -X POST -u kavyapola51@gmail.com:jirabdd10 --data @output-json2.json http://id.atlassian.com/rest/raven/1.0/import/execution/cucumber
-			
+			   def response = bat(script: 'curl -H "Content-Type: application/json" -X POST -u kavyapola51@gmail.com:jirabdd10 --data @output-json2.json http://id.atlassian.com/rest/raven/1.0/import/execution/cucumber')
+			echo response	
 		}
 	    }
     }
