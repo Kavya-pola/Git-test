@@ -36,7 +36,6 @@ pipeline{
                                             \"issuetype\": { \
                                                 \"id\": \"10014\" \
                                             }, \
-
                                             \"fixVersions\": [ \
                                               { \
                                                 \"name\": \"1.0\" \
