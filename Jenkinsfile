@@ -19,10 +19,22 @@ pipeline{
     stage('Import results to Xray') {
 	    steps{
 		    script{
-		
-			    
-			   def response = bat(script: 'curl -H "Content-Type: application/json" -X POST -u kavyapola51@gmail.com:jirabdd10 --data @output-json2.json http://id.atlassian.com/rest/raven/1.0/import/execution/cucumber')
-			echo response	
+		def testExecutionFieldId = 10014
+		def projectKey = 'BDD'
+		def xrayConnectorId = '75fd9872-0773-4762-861d-6a25c59e1e2e'
+		def info = '''{
+				"fields": {
+					"project": {
+					"key": "''' + projectKey + '''"
+				},
+				"issuetype": {
+				"id": "''' + testExecutionFieldId + '''"
+				}
+				}
+				}'''
+			echo 123
+			echo info
+			step([$class: 'XrayImportBuilder', endpointName: '/cucumber', importFilePath: 'output-json2.json', importInfo: info, inputInfoSwitcher: 'fileContent', serverInstance: xrayConnectorId])
 		}
 	    }
     }
