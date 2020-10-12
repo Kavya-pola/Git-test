@@ -28,7 +28,7 @@ pipeline{
                                 echo "Authentication token: ${token}"
 			    
 			    echo "Creating info file for Test Exec..."
-                                def meta = readJSON text: "{ \
+                                def meta = "{ \
                                         \"fields\": { \
                                             \"project\": { \
                                                 \"key\": \"BDD\" \
