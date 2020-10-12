@@ -14,7 +14,7 @@ Feature: Website login feature execution
 		    
 		    Examples:
 			| email | pwd |
-			| admin@yourstore.com | admin |
+			| admin@yourstore.com | admin0 |
 
 			
 
