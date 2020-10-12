@@ -32,7 +32,7 @@ pipeline{
 				}
 				}
 				}'''
-			echo 123
+			echo 'starts heree::::'
 			echo info
 			step([$class: 'XrayImportBuilder', endpointName: '/cucumber', importFilePath: 'output-json2.json', importInfo: info, inputInfoSwitcher: 'fileContent', serverInstance: xrayConnectorId])
 		}
