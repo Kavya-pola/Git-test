@@ -43,10 +43,9 @@ pipeline{
                                             ] \
                                         } \
                                     }"
-                                writeJSON file: "info.json", json: meta
 
                                 echo "Uploading results to Xray..."
-                                sh "curl -H \"Content-Type: multipart/form-data\" -X POST -H \"Authorization: Bearer ${token}\" -F results=@output-json2.json -F info=@info.json ${xray_server}/api/v1/import/execution/cucumber"
+                                sh "curl -H \"Content-Type: multipart/form-data\" -X POST -H \"Authorization: Bearer ${token}\" -F results=@output-json2.json -F info=meta ${xray_server}/api/v1/import/execution/cucumber"
 		
 		}
 	    }
