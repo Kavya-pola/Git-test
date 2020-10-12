@@ -26,6 +26,28 @@ pipeline{
 		    script{
 			    def token = bat(script: "curl -H \"Content-Type: application/json\" -X POST --data '{ \"client_id\": \"${client_id}\",\"client_secret\": \"${client_secret}\" }' ${xray_server}/api/v1/authenticate", returnStdout: true)
                                 echo "Authentication token: ${token}"
+			    
+			    echo "Creating info file for Test Exec..."
+                                def meta = readJSON text: "{ \
+                                        \"fields\": { \
+                                            \"project\": { \
+                                                \"key\": \"BDD\" \
+                                            }, \
+                                            \"issuetype\": { \
+                                                \"id\": \"10014\" \
+                                            }, \
+
+                                            \"fixVersions\": [ \
+                                              { \
+                                                \"name\": \"1.0\" \
+                                              } \
+                                            ] \
+                                        } \
+                                    }"
+                                writeJSON file: "info.json", json: meta
+
+                                echo "Uploading results to Xray..."
+                                sh "curl -H \"Content-Type: multipart/form-data\" -X POST -H \"Authorization: Bearer ${token}\" -F results=@output-json2.json -F info=@info.json ${xray_server}/api/v1/import/execution/cucumber"
 		
 		}
 	    }
